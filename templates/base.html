@@ -9,13 +9,21 @@
 <body>
     <header>
         <nav>
-            <div class="logo-container">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MyDja SARL Logo" class="logo">
-                <h1>MyDja SARL</h1>
-            </div>
-            <ul>
+            <a href="{{ url_for('home') }}" class="logo-link">
+                <div class="logo-container">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MyDja SARL Logo" class="logo">
+                    <h1>MyDja SARL</h1>
+                </div>
+            </a>
+            <button class="burger-menu" id="burgerMenu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -27,5 +35,25 @@
     <footer>
         <p>&copy; 2024 MyDja SARL - Central Africa</p>
     </footer>
+    
+    <script>
+        // Burger menu toggle
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navMenu = document.getElementById('navMenu');
+        
+        burgerMenu.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            burgerMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                burgerMenu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container contact-page">
+    <h2>Contactez-Nous</h2>
+    
+    <!-- Contact Information Section -->
+    <section class="contact-details-section">
+        <h3>Informations de Contact</h3>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h4>Téléphone</h4>
+                <p>CMR: 691057516 / 695166090</p>
+                <p>TCHAD: (+235) 66377698</p>
+            </div>
+            <div class="contact-item">
+                <h4>Email</h4>
+                <p>mydja.srcm@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <h4>Informations Légales</h4>
+                <p>RCCN: N° RC/DLA/2023/B/6201</p>
+                <p>NU: 102316108140L</p>
+                <p>Compte: 09237411001-83 AFRILAND FIRST BANK</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Members Section with Carousel -->
+    <section class="team-section">
+        <h3>Notre Équipe</h3>
+        <p class="team-intro">Découvrez les professionnels dévoués qui font de MYDJA SARL votre partenaire de confiance.</p>
+        
+        <div class="carousel-container">
+            <button class="carousel-btn prev" id="prevBtn" aria-label="Previous">&#10094;</button>
+            
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    {% for member in team_members %}
+                    <div class="team-card">
+                        <div class="team-image-container">
+                            <img src="{{ url_for('static', filename=member.image) }}" 
+                                 alt="{{ member.name }}" 
+                                 class="team-image"
+                                 onerror="this.src='{{ url_for('static', filename='images/team/default.svg') }}'">
+                        </div>
+                        <div class="team-info">
+                            <h4 class="team-name">{{ member.name }}</h4>
+                            <p class="team-role">{{ member.role }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <button class="carousel-btn next" id="nextBtn" aria-label="Next">&#10095;</button>
+        </div>
+        
+        <div class="carousel-indicators" id="carouselIndicators"></div>
+    </section>
+</div>
+
+<script>
+    // Carousel functionality
+    const track = document.getElementById('carouselTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicators = document.getElementById('carouselIndicators');
+    const cards = document.querySelectorAll('.team-card');
+    
+    let currentIndex = 0;
+    let cardsPerView = getCardsPerView();
+    const totalCards = cards.length;
+    const maxIndex = Math.max(0, totalCards - cardsPerView);
+    
+    // Create indicators
+    function createIndicators() {
+        indicators.innerHTML = '';
+        const numIndicators = Math.ceil(totalCards / cardsPerView);
+        for (let i = 0; i < numIndicators; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('indicator-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i * cardsPerView));
+            indicators.appendChild(dot);
+        }
+    }
+    
+    function getCardsPerView() {
+        if (window.innerWidth <= 480) return 1;
+        if (window.innerWidth <= 768) return 2;
+        return 3;
+    }
+    
+    function updateCarousel() {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 20; // gap between cards
+        const offset = -(currentIndex * (cardWidth + gap));
+        track.style.transform = `translateX(${offset}px)`;
+        
+        // Update indicators
+        const indicatorIndex = Math.floor(currentIndex / cardsPerView);
+        const allDots = indicators.querySelectorAll('.indicator-dot');
+        allDots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === indicatorIndex);
+        });
+        
+        // Update button states
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= maxIndex;
+    }
+    
+    function goToSlide(index) {
+        currentIndex = Math.max(0, Math.min(index, maxIndex));
+        updateCarousel();
+    }
+    
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+            updateCarousel();
+        }
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        const oldCardsPerView = cardsPerView;
+        cardsPerView = getCardsPerView();
+        
+        if (oldCardsPerView !== cardsPerView) {
+            currentIndex = 0;
+            createIndicators();
+            updateCarousel();
+        }
+    });
+    
+    // Auto-play carousel
+    let autoPlayInterval = setInterval(() => {
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
+        }
+        updateCarousel();
+    }, 5000);
+    
+    // Pause auto-play on hover
+    track.addEventListener('mouseenter', () => {
+        clearInterval(autoPlayInterval);
+    });
+    
+    track.addEventListener('mouseleave', () => {
+        autoPlayInterval = setInterval(() => {
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            updateCarousel();
+        }, 5000);
+    });
+    
+    // Initialize
+    createIndicators();
+    updateCarousel();
+</script>
+{% endblock %}
