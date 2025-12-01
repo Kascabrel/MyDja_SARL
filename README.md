@@ -25,7 +25,14 @@ pip install -r requirements.txt
 
 ## Running the Application
 
-To run the Flask application:
+To run the Flask application in development mode with debug enabled:
+
+```bash
+export FLASK_ENV=development  # On Windows: set FLASK_ENV=development
+python app.py
+```
+
+Or run in production mode (default):
 
 ```bash
 python app.py

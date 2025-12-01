@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template
 
 app = Flask(__name__)
@@ -13,4 +14,6 @@ def about():
     return render_template('about.html', title='About Us')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Only enable debug mode in development
+    debug_mode = os.getenv('FLASK_ENV') == 'development'
+    app.run(debug=debug_mode)
