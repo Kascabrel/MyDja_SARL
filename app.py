@@ -19,35 +19,23 @@ def contact():
     # Mock data for team members
     team_members = [
         {
-            'name': 'Jean Dupont',
+            'name': 'Billy Yossa',
             'role': 'Directeur Général',
-            'image': 'images/team/member1.svg'
+            'image': 'images/team/member1.svg',
+            'work': 'Ingénieur de Electrotechnicien'
         },
         {
-            'name': 'Marie Kouassi',
-            'role': 'Chef de Projet',
-            'image': 'images/team/member2.svg'
+            'name': 'Peguy Martial Djatchedje',
+            'role': 'Directeur adjoint, Chef de Projet',
+            'image': 'images/team/member2.svg',
+            'work': 'Ingénieur de Electrotechnicien'
         },
         {
-            'name': 'Paul Ndongo',
-            'role': 'Ingénieur Électricien',
-            'image': 'images/team/member3.svg'
+            'name': 'Steve Kamguia',
+            'role': 'IT consultant & developpeur embarqué',
+            'image': 'images/team/member3.svg',
+            'work': ' Ingénieur de travaux informatique.'
         },
-        {
-            'name': 'Sophie Kamara',
-            'role': 'Technicienne Sécurité',
-            'image': 'images/team/member4.svg'
-        },
-        {
-            'name': 'Ahmed Hassan',
-            'role': 'Spécialiste Réseaux',
-            'image': 'images/team/member5.svg'
-        },
-        {
-            'name': 'Fatima Diallo',
-            'role': 'Responsable BTP',
-            'image': 'images/team/member6.svg'
-        }
     ]
     return render_template('contact.html', title='Contact', team_members=team_members)
 
