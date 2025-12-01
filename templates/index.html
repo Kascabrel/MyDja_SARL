@@ -1,9 +1,118 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-    <h2>Welcome to MyDja SARL</h2>
-    <p>Your trusted partner in Central Africa</p>
-    <p>This is the official website of MyDja SARL, a society located in Central Africa.</p>
-</div>
+<!-- Hero Section -->
+<section class="hero">
+    <img src="{{ url_for('static', filename='images/hero.png') }}" alt="MyDja SARL Hero" class="hero-image">
+    <div class="hero-content">
+        <h1>MYDJA SARL</h1>
+        <p class="hero-tagline">La sécurité c'est notre affaire</p>
+        <p class="hero-subtitle">Votre partenaire de confiance en Afrique Centrale</p>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services">
+    <div class="container">
+        <h2>Nos Principales Activités</h2>
+        <p class="section-intro">MYDJA SARL possède une expérience confirmée dans les qualifications suivantes :</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Surveillance & Sécurité</h3>
+                <p>Installation des caméras de surveillance pour quadrillage du site et centralisation des données à distance.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>Installation Électrique</h3>
+                <p>Installation résidentielle et industrielle des équipements électriques.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>Groupes Électrogènes</h3>
+                <p>Installation et maintenance des groupes électrogènes.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>Domotique</h3>
+                <p>Automatisation des systèmes dans le but de les rendre intelligents.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>Systèmes de Sécurité</h3>
+                <p>Installation et configuration des systèmes de sécurité incendie, intrusions, téléphonies et contrôle d'accès.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>Réseaux Informatiques</h3>
+                <p>Conception et réalisation des systèmes liés aux réseaux informatiques.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>Fibre Optique</h3>
+                <p>Déploiement et maintenance des réseaux à fibre optique.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>Énergie Solaire</h3>
+                <p>Solutions d'énergie renouvelable et installation solaire.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>Électricité Générale</h3>
+                <p>Services complets d'électricité générale.</p>
+            </div>
+            
+            <div class="service-card">
+                <h3>BTP</h3>
+                <p>Bâtiment et Travaux Publics.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Offered Section -->
+<section class="services-offered">
+    <div class="container">
+        <h2>Services Offerts</h2>
+        <p class="section-intro">Avec une gestion dynamique et intégrée qui met à contribution la participation du client, MYDJA SARL peut aussi bien remplir un mandat défini qu'assumer la gestion et la réalisation complète d'un projet.</p>
+        
+        <ul class="services-list">
+            <li>Assistances Techniques aux Maîtres d'Ouvrage pour la réalisation des projets</li>
+            <li>Avant-projets (Sommaires et Détaillés)</li>
+            <li>Études de faisabilité</li>
+            <li>Analyse des projets</li>
+            <li>Études de prix</li>
+            <li>Expertise</li>
+            <li>Contrôle et suivi de chantier</li>
+            <li>Gestion et Approvisionnement de chantier</li>
+            <li>Formation et encadrement des agents</li>
+            <li>Construction des Ouvrages</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-info">
+    <div class="container">
+        <h2>Contactez-Nous</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h3>Téléphone</h3>
+                <p>CMR: 691057516 / 695166090</p>
+                <p>TCHAD: (+235) 66377698</p>
+            </div>
+            <div class="contact-item">
+                <h3>Email</h3>
+                <p>mydja.srcm@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <h3>Informations Légales</h3>
+                <p>RCCN: N° RC/DLA/2023/B/6201</p>
+                <p>NU: 102316108140L</p>
+                <p>Compte: 09237411001-83 AFRILAND FIRST BANK</p>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}

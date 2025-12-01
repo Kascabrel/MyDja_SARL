@@ -9,7 +9,10 @@
 <body>
     <header>
         <nav>
-            <h1>MyDja SARL</h1>
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MyDja SARL Logo" class="logo">
+                <h1>MyDja SARL</h1>
+            </div>
             <ul>
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('about') }}">About</a></li>
