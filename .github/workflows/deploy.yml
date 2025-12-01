@@ -38,5 +38,5 @@ jobs:
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/mydja-sarl:latest
             docker stop mydja-sarl || true
             docker rm mydja-sarl || true
-            docker run -d -p 5200:5200 --restart unless-stopped --name mydja-sarl ${{ secrets.DOCKERHUB_USERNAME }}/mydja-sarl:latest
+            docker run -d -p 5210:5200 --restart unless-stopped --name mydja-sarl ${{ secrets.DOCKERHUB_USERNAME }}/mydja-sarl:latest
             docker image prune -f
