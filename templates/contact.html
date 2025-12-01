@@ -71,7 +71,13 @@
     let currentIndex = 0;
     let cardsPerView = getCardsPerView();
     const totalCards = cards.length;
-    const maxIndex = Math.max(0, totalCards - cardsPerView);
+    let maxIndex = Math.max(0, totalCards - cardsPerView);
+    
+    // Check if we have cards
+    if (totalCards === 0) {
+        console.warn('No team cards found');
+        return;
+    }
     
     // Create indicators
     function createIndicators() {
@@ -135,29 +141,16 @@
         cardsPerView = getCardsPerView();
         
         if (oldCardsPerView !== cardsPerView) {
-            currentIndex = 0;
+            maxIndex = Math.max(0, totalCards - cardsPerView);
+            currentIndex = Math.min(currentIndex, maxIndex);
             createIndicators();
             updateCarousel();
         }
     });
     
-    // Auto-play carousel
-    let autoPlayInterval = setInterval(() => {
-        if (currentIndex < maxIndex) {
-            currentIndex++;
-        } else {
-            currentIndex = 0;
-        }
-        updateCarousel();
-    }, 5000);
-    
-    // Pause auto-play on hover
-    track.addEventListener('mouseenter', () => {
-        clearInterval(autoPlayInterval);
-    });
-    
-    track.addEventListener('mouseleave', () => {
-        autoPlayInterval = setInterval(() => {
+    // Auto-play function
+    function startAutoPlay() {
+        return setInterval(() => {
             if (currentIndex < maxIndex) {
                 currentIndex++;
             } else {
@@ -165,6 +158,18 @@
             }
             updateCarousel();
         }, 5000);
+    }
+    
+    // Auto-play carousel
+    let autoPlayInterval = startAutoPlay();
+    
+    // Pause auto-play on hover
+    track.addEventListener('mouseenter', () => {
+        clearInterval(autoPlayInterval);
+    });
+    
+    track.addEventListener('mouseleave', () => {
+        autoPlayInterval = startAutoPlay();
     });
     
     // Initialize

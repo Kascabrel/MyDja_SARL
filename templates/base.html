@@ -15,7 +15,7 @@
                     <h1>MyDja SARL</h1>
                 </div>
             </a>
-            <button class="burger-menu" id="burgerMenu" aria-label="Menu">
+            <button class="burger-menu" id="burgerMenu" aria-label="Menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -44,6 +44,8 @@
         burgerMenu.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             burgerMenu.classList.toggle('active');
+            const isExpanded = navMenu.classList.contains('active');
+            burgerMenu.setAttribute('aria-expanded', isExpanded.toString());
         });
         
         // Close menu when clicking a link
@@ -52,6 +54,7 @@
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 burgerMenu.classList.remove('active');
+                burgerMenu.setAttribute('aria-expanded', 'false');
             });
         });
     </script>
