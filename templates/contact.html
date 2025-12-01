@@ -60,6 +60,7 @@
 </div>
 
 <script>
+(function() {
     // Carousel functionality
     const track = document.getElementById('carouselTrack');
     const prevBtn = document.getElementById('prevBtn');
@@ -174,5 +175,6 @@
     // Initialize
     createIndicators();
     updateCarousel();
+})();
 </script>
 {% endblock %}
